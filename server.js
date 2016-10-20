@@ -20,7 +20,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/log', function (req, res) {
-  res.render('log.txt', { pageCountMessage : null});
+  res.send('hello log');
 });
 
 
