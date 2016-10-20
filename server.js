@@ -19,6 +19,11 @@ app.get('/', function (req, res) {
   res.render('index.html', { pageCountMessage : null});
 });
 
+app.get('/log', function (req, res) {
+  res.render('log.txt', { pageCountMessage : null});
+});
+
+
 // error handling
 app.use(function(err, req, res, next){
   console.error(err.stack);
