@@ -14,7 +14,7 @@ app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined', {stream: accessLogStream}));
 
 //app.use("/public", express.static(path.join(__dirname, 'public')));
-app.use('/static', express.static('public'));
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
