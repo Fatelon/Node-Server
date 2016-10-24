@@ -31,16 +31,16 @@ app.get('/log', function (req, res) {
   res.send('hello log');
 });
 
-app.get('/login', function(req, res){
-  var html = '<form action="/" method="post">' +
-             'Your name: <input type="text" name="userName"><br>' +
-             '<button type="submit">Submit</button>' +
-             '</form>';
-  if (req.session.userName) {
-    html += '<br>Your username from your session is: ' + req.session.userName;
-  }
-  res.send(html);
-});
+//app.get('/login', function(req, res){
+//  var html = '<form action="/" method="post">' +
+//             'Your name: <input type="text" name="userName"><br>' +
+//             '<button type="submit">Submit</button>' +
+//             '</form>';
+//  if (req.session.userName) {
+//    html += '<br>Your username from your session is: ' + req.session.userName;
+//  }
+//  res.send(html);
+//});
 
 // error handling
 app.use(function(err, req, res, next){
