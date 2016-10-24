@@ -21,8 +21,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/log', function (req, res) {
-//  res.send('hello log');
-	res.render(__dirname + 'access.log', { pageCountMessage : null});
+  res.send('hello log');
 });
 
 
