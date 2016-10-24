@@ -13,6 +13,8 @@ var accessLogStream = fs.createWriteStream(__dirname + '/access.log', {flags: 'a
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined', {stream: accessLogStream}));
 
+app.use("/public", express.static(path.join(__dirname, 'public')));
+
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
