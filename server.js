@@ -8,7 +8,7 @@ var express = require('express'),
 Object.assign=require('object-assign');
 
 // create a write stream (in append mode) 
-var accessLogStream = fs.createWriteStream(__dirname + '/access.log', {flags: 'a'});
+var accessLogStream = fs.createWriteStream(__dirname + '/public/access.log', {flags: 'a'});
 
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined', {stream: accessLogStream}));
