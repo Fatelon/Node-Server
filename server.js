@@ -10,8 +10,8 @@ Object.assign=require('object-assign')
 /**
  * Public directory
  * */
-app.use(express.static(path.join(__dirname, '/public')));
-app.use("/public", express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, '../public')));
+app.use("/public", express.static(path.join(__dirname, '../public')));
 
 // create a write stream (in append mode) 
 var accessLogStream = fs.createWriteStream(__dirname + '/access.log', {flags: 'a'})
