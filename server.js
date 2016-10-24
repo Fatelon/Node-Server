@@ -5,8 +5,8 @@ var express = require('express'),
     eps     = require('ejs'),
     morgan  = require('morgan');
     
-app.use(express.cookieParser());
-app.use(express.session({secret: '1234567890QWERTY'}));
+//app.use(express.cookieParser());
+//app.use(express.session({secret: '1234567890QWERTY'}));
 	
 Object.assign=require('object-assign');
 
