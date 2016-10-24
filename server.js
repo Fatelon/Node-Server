@@ -5,6 +5,9 @@ var express = require('express'),
     eps     = require('ejs'),
     morgan  = require('morgan');
     
+app.use(express.cookieParser());
+app.use(express.session({secret: '1234567890QWERTY'}));
+	
 Object.assign=require('object-assign');
 
 // create a write stream (in append mode) 
@@ -13,7 +16,6 @@ var accessLogStream = fs.createWriteStream(__dirname + '/public/access.log', {fl
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined', {stream: accessLogStream}));
 
-//app.use("/public", express.static(path.join(__dirname, 'public')));
 app.use('/static', express.static(__dirname + '/public'));
 
 
