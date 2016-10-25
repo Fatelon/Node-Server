@@ -4,7 +4,7 @@ var express = require('express'),
 //	session = require('express-session'),
     app     = express(),
     eps     = require('ejs'),
-//	mysql   = require('mysql'),
+	mysql   = require('mysql'),
     morgan  = require('morgan');
 	
     
