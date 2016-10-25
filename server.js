@@ -39,20 +39,27 @@ var connection = mysql.createConnection({
   database : 'mynodejsserver'
 });
 	
-connection.connect(function(err) {
-  if (err) {
-    console.error('error connecting: ' + err.stack);
-    return;
+connection.connect('CREATE TABLE TerStops (
+  Stop_id int,
+  Stop_name VARCHAR(100),
+  Stop_lat VARCHAR(100),
+  Stop_lon VARCHAR(100),
+  PRIMARY KEY(Stop_id))', 
+  function(err) {
+    if (err) {
+      console.error('error connecting: ' + err.stack);
+      return;
+    }
+    logger.info('connected as id ' + connection.threadId);
+    logger.log('debug', 'lalalalala');
+    console.log('connected as id ' + connection.threadId);
   }
-  logger.info('connected as id ' + connection.threadId);
-  logger.log('debug', 'lalalalala');
-  console.log('connected as id ' + connection.threadId);
-});	
+);	
 	
 	
 	
 app.get('/', function (req, res) {
-  logger.transports[1].log('info', 'get / request');
+//  logger.transports[1].log('info', 'get / request');
   res.render('index.html', { pageCountMessage : null});
 });
 
