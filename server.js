@@ -4,7 +4,8 @@ var express = require('express'),
 //	session = require('express-session'),
     app     = express(),
     eps     = require('ejs'),
-    morgan  = require('morgan');
+    morgan  = require('morgan'),
+	mysql   = require('mysql');
     
 //app.use(express.cookieParser());
 //app.use(express.session({secret: '1234567890QWERTY'}));
