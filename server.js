@@ -23,7 +23,13 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 	
-winston.add(winston.transports.File, { filename: __dirname + '/public/winston.log' });	
+//winston.add(winston.transports.File, { filename: __dirname + '/public/winston.log' });	
+var logger = new (winston.Logger)({
+    transports: [
+      new (winston.transports.Console)(),
+      new (winston.transports.File)({ filename: __dirname + '/public/winston.log' })
+    ]
+  });
 	
 	
 var connection = mysql.createConnection({
@@ -38,15 +44,15 @@ connection.connect(function(err) {
     console.error('error connecting: ' + err.stack);
     return;
   }
-  winston.info('connected as id ' + connection.threadId);
-  winston.log('debug', 'lalalalala');
+  logger.info('connected as id ' + connection.threadId);
+  logger.log('debug', 'lalalalala');
   console.log('connected as id ' + connection.threadId);
 });	
 	
 	
 	
 app.get('/', function (req, res) {
-  winston.info('get / request');
+  logger.log('info', 'get / request');
   res.render('index.html', { pageCountMessage : null});
 });
 
