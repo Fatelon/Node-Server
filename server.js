@@ -39,6 +39,7 @@ connection.connect(function(err) {
     return;
   }
   winston.info('connected as id ' + connection.threadId);
+  winston.log('debug', 'lalalalala');
   console.log('connected as id ' + connection.threadId);
 });	
 	
