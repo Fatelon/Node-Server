@@ -52,7 +52,7 @@ connection.connect(function(err) {
 	
 	
 app.get('/', function (req, res) {
-  logger.log('info', 'get / request');
+  logger.transports[1].log('info', 'get / request');
   res.render('index.html', { pageCountMessage : null});
 });
 
