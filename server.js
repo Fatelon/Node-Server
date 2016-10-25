@@ -4,7 +4,8 @@ var express = require('express'),
     app     = express(),
     eps     = require('ejs'),
 	mysql   = require('mysql'),
-    morgan  = require('morgan');
+	winston = require('winston');
+//    morgan  = require('morgan');
 	
 	
 Object.assign=require('object-assign');
@@ -13,7 +14,7 @@ Object.assign=require('object-assign');
 var accessLogStream = fs.createWriteStream(__dirname + '/public/access.log', {flags: 'a'});
 
 app.engine('html', require('ejs').renderFile);
-app.use(morgan('combined', {stream: accessLogStream}));
+//app.use(morgan('combined', {stream: accessLogStream}));
 
 app.use('/static', express.static(__dirname + '/public'));
 
@@ -21,6 +22,8 @@ app.use('/static', express.static(__dirname + '/public'));
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
+	
+winston.add(winston.transports.File, { filename: __dirname + '/public/winston.log' });	
 	
 	
 var connection = mysql.createConnection({
@@ -35,13 +38,14 @@ connection.connect(function(err) {
     console.error('error connecting: ' + err.stack);
     return;
   }
- 
+  winston.info('connected as id ' + connection.threadId);
   console.log('connected as id ' + connection.threadId);
 });	
 	
 	
 	
 app.get('/', function (req, res) {
+  winston.info('get / request');
   res.render('index.html', { pageCountMessage : null});
 });
 
