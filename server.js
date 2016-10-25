@@ -39,12 +39,7 @@ var connection = mysql.createConnection({
   database : 'mynodejsserver'
 });
 	
-connection.connect('CREATE TABLE TerStops (
-  Stop_id int,
-  Stop_name VARCHAR(100),
-  Stop_lat VARCHAR(100),
-  Stop_lon VARCHAR(100),
-  PRIMARY KEY(Stop_id))', 
+connection.connect(
   function(err) {
     if (err) {
       console.error('error connecting: ' + err.stack);
