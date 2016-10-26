@@ -1,6 +1,10 @@
 var mysql = require('mysql');
 
-module.exports {
+//function MyDB() {}
+
+
+
+exports.createMyConnection = function createConnection() {
   var connection = mysql.createConnection({
     host     : '127.3.73.2',
     port     : '3306',
@@ -18,11 +22,16 @@ module.exports {
       console.log('my connected as id ' + connection.threadId);
     }
   );
-  
-  connection.query('CREATE TABLE IF NOT EXISTS MyDev (deviceId varchar(50) NOT NULL, appDeviceId varchar(10) NULL, description varchar(255) NOT NULL, PRIMARY KEY(deviceId))', 
+  connection.query('CREATE TABLE IF NOT EXISTS MyBD (deviceId varchar(50) NOT NULL, appDeviceId varchar(10) NULL, description varchar(255) NOT NULL, PRIMARY KEY(deviceId))', 
     function (err, result) {
         if (err) console.log(err);
         else console.log('Table created ' + result);
     }
   );
 };
+
+
+
+
+
+//module.exports = MyDB;
