@@ -4,7 +4,7 @@ var mysql = require('mysql');
 
 
 
-exports.createMyConnection = function createConnection() {
+module.exports = function createConnection() {
   var connection = mysql.createConnection({
     host     : '127.3.73.2',
     port     : '3306',

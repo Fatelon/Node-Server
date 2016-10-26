@@ -15,7 +15,7 @@ Object.assign=require('object-assign');
 app.engine('html', require('ejs').renderFile);
 //app.use(morgan('combined', {stream: accessLogStream}));
 
-app.use('/static', express.static(__dirname + '/public'));
+app.use('', express.static(__dirname + '/public'));
 
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
@@ -25,7 +25,7 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
 //winston.add(winston.transports.File, { filename: __dirname + '/public/winston.log' });	
 	
   
-mydb.createMyConnection();
+//mydb.createMyConnection();
   
   
 	
