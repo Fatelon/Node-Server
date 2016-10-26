@@ -50,7 +50,7 @@ PRIMARY KEY(deviceId)
 
         
 	
-//connection.connect('CREATE TABLE Devices (deviceId varchar(50) NOT NULL, appDeviceId varchar(10) NULL, description varchar(255) NOT NULL, PRIMARY KEY(deviceId))',
+//connection.connect('CREATE TABLE IF NOT EXISTS Devices (deviceId varchar(50) NOT NULL, appDeviceId varchar(10) NULL, description varchar(255) NOT NULL, PRIMARY KEY(deviceId))',
 connection.connect(
   function(err) {
     if (err) {
