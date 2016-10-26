@@ -38,8 +38,19 @@ var connection = mysql.createConnection({
   password : '9Cj1vZVsSrN_',
   database : 'mynodejsserver'
 });
+
+
+CREATE TABLE fff
+(
+deviceId varchar(50) NOT NULL,
+appDeviceId varchar(10) NULL,
+description varchar(255) NOT NULL,
+PRIMARY KEY(deviceId)
+);
+
+        
 	
-connection.connect(
+connection.connect('CREATE TABLE Devices (deviceId varchar(50) NOT NULL, appDeviceId varchar(10) NULL, description varchar(255) NOT NULL, PRIMARY KEY(deviceId))',
   function(err) {
     if (err) {
       console.error('error connecting: ' + err.stack);
@@ -50,7 +61,16 @@ connection.connect(
     console.log('connected as id ' + connection.threadId);
   }
 );	
-	
+
+connection.query(
+  'DELETE FROM employees WHERE id = ?',
+  [5],
+  function (err, result) {
+    if (err) throw err;
+
+    console.log('Deleted ' + result.affectedRows + ' rows');
+  }
+);
 	
 	
 app.get('/', function (req, res) {
