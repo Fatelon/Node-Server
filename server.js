@@ -3,7 +3,8 @@ var express = require('express'),
     fs      = require('fs'),
     app     = express(),
     eps     = require('ejs'),
-	mysql   = require('mysql');
+    mydb    = require('./database');
+//    mysql   = require('mysql');
 	
 	
 Object.assign=require('object-assign');
@@ -23,33 +24,10 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
 	
 //winston.add(winston.transports.File, { filename: __dirname + '/public/winston.log' });	
 	
-	
-var connection = mysql.createConnection({
-  host     : '127.3.73.2',
-  port     : '3306',
-  user     : 'adminBpFnnvy',
-  password : '9Cj1vZVsSrN_',
-  database : 'mynodejsserver'
-});
-
-        
-	
-//connection.connect('CREATE TABLE IF NOT EXISTS Devices (deviceId varchar(50) NOT NULL, appDeviceId varchar(10) NULL, description varchar(255) NOT NULL, PRIMARY KEY(deviceId))',
-connection.connect(
-  function(err) {
-    if (err) {
-      console.error('error connecting: ' + err.stack);
-      return;
-    }
-    console.log('connected as id ' + connection.threadId);
-  }
-);	
-
-connection.query('CREATE TABLE IF NOT EXISTS Dev (deviceId varchar(50) NOT NULL, appDeviceId varchar(10) NULL, description varchar(255) NOT NULL, PRIMARY KEY(deviceId))', function (err, result) {
-                        if (err) console.log(err);
-                        else console.log('Table created ' + result);
-                    });
-	
+  
+mydb.createMyConnection();
+  
+  
 	
 app.get('/', function (req, res) {
   res.render('index.html', { pageCountMessage : null});
