@@ -27,7 +27,7 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
 var logger = new (winston.Logger)({
     transports: [
       new (winston.transports.Console)(),
-      new (winston.transports.File)({ filename: __dirname + '/public/winston.log' })
+      new (winston.transports.File)({ filename: __dirname + 'mylogfile.log' })
     ]
   });
 	
