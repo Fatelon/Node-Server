@@ -3,15 +3,13 @@ var express = require('express'),
     fs      = require('fs'),
     app     = express(),
     eps     = require('ejs'),
-	mysql   = require('mysql'),
-	winston = require('winston');
-//    morgan  = require('morgan');
+	mysql   = require('mysql');
 	
 	
 Object.assign=require('object-assign');
 
 // create a write stream (in append mode) 
-var accessLogStream = fs.createWriteStream(__dirname + '/public/access.log', {flags: 'a'});
+//var accessLogStream = fs.createWriteStream(__dirname + '/public/access.log', {flags: 'a'});
 
 app.engine('html', require('ejs').renderFile);
 //app.use(morgan('combined', {stream: accessLogStream}));
@@ -24,12 +22,6 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
 
 	
 //winston.add(winston.transports.File, { filename: __dirname + '/public/winston.log' });	
-var logger = new (winston.Logger)({
-    transports: [
-      new (winston.transports.Console)(),
-      new (winston.transports.File)({ filename: __dirname + 'app-root/logs/mylogfile.log' })
-    ]
-  });
 	
 	
 var connection = mysql.createConnection({
@@ -49,20 +41,17 @@ connection.connect(
       console.error('error connecting: ' + err.stack);
       return;
     }
-    logger.info('connected as id ' + connection.threadId);
-    logger.log('debug', 'lalalalala');
     console.log('connected as id ' + connection.threadId);
   }
 );	
 
-connection.query('CREATE TABLE IF NOT EXISTS Devices (deviceId varchar(50) NOT NULL, appDeviceId varchar(10) NULL, description varchar(255) NOT NULL, PRIMARY KEY(deviceId))', function (err, result) {
+connection.query('CREATE TABLE IF NOT EXISTS Dev (deviceId varchar(50) NOT NULL, appDeviceId varchar(10) NULL, description varchar(255) NOT NULL, PRIMARY KEY(deviceId))', function (err, result) {
                         if (err) console.log(err);
-                        else logger.log('Table created ' + result);
+                        else console.log('Table created ' + result);
                     });
 	
 	
 app.get('/', function (req, res) {
-//  logger.transports[1].log('info', 'get / request');
   res.render('index.html', { pageCountMessage : null});
 });
 
