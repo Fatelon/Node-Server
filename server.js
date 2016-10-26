@@ -2,8 +2,7 @@
 var express = require('express'),
     fs      = require('fs'),
     app     = express(),
-    eps     = require('ejs'),
-    mydb    = require('./database');
+    eps     = require('ejs');
 //    mysql   = require('mysql');
 	
 	
@@ -25,7 +24,7 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
 //winston.add(winston.transports.File, { filename: __dirname + '/public/winston.log' });	
 	
   
-mydb.createMyConnection();
+require('./database');
   
   
 	
@@ -34,6 +33,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/log', function (req, res) {
+  console.log('go to log');
   res.send('hello log');
 });
 
