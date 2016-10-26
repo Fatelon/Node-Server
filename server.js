@@ -39,15 +39,6 @@ var connection = mysql.createConnection({
   database : 'mynodejsserver'
 });
 
-
-CREATE TABLE fff
-(
-deviceId varchar(50) NOT NULL,
-appDeviceId varchar(10) NULL,
-description varchar(255) NOT NULL,
-PRIMARY KEY(deviceId)
-);
-
         
 	
 //connection.connect('CREATE TABLE IF NOT EXISTS Devices (deviceId varchar(50) NOT NULL, appDeviceId varchar(10) NULL, description varchar(255) NOT NULL, PRIMARY KEY(deviceId))',
@@ -63,15 +54,10 @@ connection.connect(
   }
 );	
 
-connection.query(
-  'DELETE FROM employees WHERE id = ?',
-  [5],
-  function (err, result) {
-    if (err) throw err;
-
-    console.log('Deleted ' + result.affectedRows + ' rows');
-  }
-);
+connection.query('CREATE TABLE IF NOT EXISTS Devices (deviceId varchar(50) NOT NULL, appDeviceId varchar(10) NULL, description varchar(255) NOT NULL, PRIMARY KEY(deviceId))', function (err, result) {
+                        if (err) console.log(err);
+                        else logger.log('Table created ' + result);
+                    });
 	
 	
 app.get('/', function (req, res) {
