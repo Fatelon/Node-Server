@@ -22,6 +22,12 @@ exports.createMyConnection = function createConnection() {
       console.log('my connected as id ' + connection.threadId);
     }
   );
+  connection.query('CREATE TABLE IF NOT EXISTS MyDev (deviceId varchar(50) NOT NULL, appDeviceId varchar(10) NULL, description varchar(255) NOT NULL, PRIMARY KEY(deviceId))', 
+    function (err, result) {
+        if (err) console.log(err);
+        else console.log('Table created ' + result);
+    }
+  );
 };
 
 
