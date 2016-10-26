@@ -33,7 +33,8 @@ var logger = new (winston.Logger)({
 	
 	
 var connection = mysql.createConnection({
-  host     : 'mynodejsserver-fatelon.rhcloud.com',
+  host     : '127.3.73.2',
+  port     : '3306',
   user     : 'adminBpFnnvy',
   password : '9Cj1vZVsSrN_',
   database : 'mynodejsserver'
