@@ -3,9 +3,8 @@ var express = require('express'),
     fs      = require('fs'),
     app     = express(),
     eps     = require('ejs'),
-    sql    = require('mssql');
-//    mydb    = require('./database');
-//    mysql   = require('mysql');
+    sql    = require('mssql'),
+    mydb    = require('./database');
 	
 	
 Object.assign=require('object-assign');
@@ -14,19 +13,11 @@ Object.assign=require('object-assign');
 //var accessLogStream = fs.createWriteStream(__dirname + '/public/access.log', {flags: 'a'});
 
 app.engine('html', require('ejs').renderFile);
-//app.use(morgan('combined', {stream: accessLogStream}));
-
 app.use('', express.static(__dirname + '/public'));
-
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
-	
-//winston.add(winston.transports.File, { filename: __dirname + '/public/winston.log' });	
-	
-  
-//mydb.createMyConnection();
   
 var config = {
     user: 'DB_A1252A_fatelon_admin',
@@ -37,26 +28,11 @@ var config = {
     options: {
         encrypt: true // Use this if you're on Windows Azure 
     }
-}
-
-sql.connect(config, function(err) {
-    // ... error checks 
-    if (err != null) {
-      console.log('err1 ' + err);
-    }
-    
-    // Query 
- 
-    var request = new sql.Request(connection1); // or: var request = connection1.request(); 
-    request.query('INSERT INTO DeviceSimCards VALUES (500, 500)', function(err, recordset) {
-        // ... error checks 
- 
-        console.log('INSERT req ' + recordset);
-    });
- 
-});
+}  
   
-	
+//mydb.addRowInTable(config, 'MyDev', '(17, 17)');
+  
+  
 app.get('/', function (req, res) {
   res.render('index.html', { pageCountMessage : null});
 });
@@ -64,6 +40,13 @@ app.get('/', function (req, res) {
 app.get('/log', function (req, res) {
   console.log('Go to /log');
   res.send('hello log');
+});
+
+app.post('/api/addmydev', function(req, res) {
+    var id = req.body.id;
+    var value = req.body.value;
+    mydb.addRowInTable(config, 'MyDev', '(' + id + ', ' + value + ')');
+    res.send(id + ' ' + value);
 });
 
 app.post('/api/adddevice', function(req, res) {
