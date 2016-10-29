@@ -39,7 +39,7 @@ var config = {
     }
 }
 
-var connection1 = new sql.Connection(config, function(err) {
+sql.Connection(config, function(err) {
     // ... error checks 
     if (err != null) {
       console.log('err1 ' + err);
@@ -54,8 +54,7 @@ var connection1 = new sql.Connection(config, function(err) {
         console.log('INSERT req ' + recordset);
     });
  
-});
-  
+});  
 	
 app.get('/', function (req, res) {
   res.render('index.html', { pageCountMessage : null});
@@ -66,6 +65,13 @@ app.get('/log', function (req, res) {
   res.send('hello log');
 });
 
+app.post('/api/adddevice', function(req, res) {
+    var device_id = req.body.deviceid;
+    var app_device_id = req.body.appdeviceid;
+    var description = req.body.description;
+
+    res.send(device_id + ' ' + app_device_id + ' ' + description);
+});
 
 // error handling
 app.use(function(err, req, res, next){
