@@ -14,10 +14,10 @@ Object.assign=require('object-assign');
 
 
 var bodyParser = require('body-parser');
-app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); 
 
-app.engine('html', require('ejs').renderFile);
+app.engine('html', eps.renderFile);
 app.use('', express.static(__dirname + '/public'));
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
