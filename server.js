@@ -3,7 +3,8 @@ var express = require('express'),
     fs      = require('fs'),
     app     = express(),
     eps     = require('ejs'),
-    mydb    = require('./database');
+    sql    = require('mssql');
+//    mydb    = require('./database');
 //    mysql   = require('mysql');
 	
 	
@@ -27,6 +28,33 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
   
 //mydb.createMyConnection();
   
+var config = {
+    user: 'DB_A1252A_fatelon_admin',
+    password: '22091993!s',
+    server: 'sql5027.smarterasp.net', // You can use 'localhost\\instance' to connect to named instance 
+    database: 'DB_A1252A_fatelon',
+ 
+    options: {
+        encrypt: true // Use this if you're on Windows Azure 
+    }
+}
+
+var connection1 = new sql.Connection(config, function(err) {
+    // ... error checks 
+    if (err != null) {
+      console.log('err1 ' + err);
+    }
+    
+    // Query 
+ 
+    var request = new sql.Request(connection1); // or: var request = connection1.request(); 
+    request.query('INSERT INTO DeviceSimCards VALUES (500, 500)', function(err, recordset) {
+        // ... error checks 
+ 
+        console.log('INSERT req ' + recordset);
+    });
+ 
+});
   
 	
 app.get('/', function (req, res) {
