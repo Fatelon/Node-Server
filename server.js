@@ -39,7 +39,7 @@ var config = {
     }
 }
 
-var connection1 = new sql.Connection(config, function(err) {
+sql.connect(config, function(err) {
     // ... error checks 
     if (err != null) {
       console.log('err1 ' + err);
