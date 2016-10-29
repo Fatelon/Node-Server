@@ -12,6 +12,11 @@ Object.assign=require('object-assign');
 // create a write stream (in append mode) 
 //var accessLogStream = fs.createWriteStream(__dirname + '/public/access.log', {flags: 'a'});
 
+
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); 
+
 app.engine('html', require('ejs').renderFile);
 app.use('', express.static(__dirname + '/public'));
 
