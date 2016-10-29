@@ -39,7 +39,7 @@ var config = {
     }
 }
 
-sql.Connection(config, function(err) {
+var connection1 = new sql.Connection(config, function(err) {
     // ... error checks 
     if (err != null) {
       console.log('err1 ' + err);
@@ -54,7 +54,8 @@ sql.Connection(config, function(err) {
         console.log('INSERT req ' + recordset);
     });
  
-});  
+});
+  
 	
 app.get('/', function (req, res) {
   res.render('index.html', { pageCountMessage : null});
