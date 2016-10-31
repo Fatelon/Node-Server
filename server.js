@@ -44,7 +44,8 @@ app.get('/', function (req, res) {
 
 app.get('/log', function (req, res) {
   console.log('Go to /log');
-  res.send('{"status": [{"st": "ok"]}}');
+  res.status(200).send('');
+//  res.send('{"status": [{"st": "ok"]}}');
 });
 
 app.post('/api/addmydev', function(req, res) {
