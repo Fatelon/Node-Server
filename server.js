@@ -52,7 +52,8 @@ app.post('/api/addmydev', function(req, res) {
     var id = req.body.id;
     var value = req.body.value;
     mydb.addRowInTable(config, 'MyDev', '(' + id + ', ' + value + ')');
-    res.send(id + ' ' + value);
+    res.json(req.body);
+//    res.send(id + ' ' + value);
 });
 
 app.post('/api/adddevice', function(req, res) {
