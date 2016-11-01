@@ -56,12 +56,11 @@ app.post('/api/addmydev', function(req, res) {
 //    res.send(id + ' ' + value);
 });
 
-app.post('/api/adddevice', function(req, res) {
+app.post('/api/Devices/addrow', function(req, res) {
     var device_id = req.body.deviceid;
     var app_device_id = req.body.appdeviceid;
     var description = req.body.description;
-
-    res.send(device_id + ' ' + app_device_id + ' ' + description);
+    mydb.addRowInTable(config, 'Devices', '(' + device_id + ', ' + appDeviceId + ', ' + description')');
 });
 
 // error handling
