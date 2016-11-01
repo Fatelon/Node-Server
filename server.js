@@ -60,7 +60,68 @@ app.post('/api/Devices/addrow', function(req, res) {
     var device_id = req.body.deviceid;
     var app_device_id = req.body.appdeviceid;
     var description = req.body.description;
-    mydb.addRowInTable(config, 'Devices', '(' + device_id + ', ' + appDeviceId + ', ' + description')');
+    mydb.addRowInTable(config, 'Devices', '(' + device_id + ', ' + appDeviceId + ', ' + description + ')');
+});
+
+app.post('/api/DeviceSimCards/addrow', function(req, res) {
+    var device_id = req.body.deviceid;
+    var iccid = req.body.iccid;
+    mydb.addRowInTable(config, 'DeviceSimCards', '(' + device_id + ', ' + iccid + ')');
+});
+
+app.post('/api/SimCards/addrow', function(req, res) {
+    var iccid = req.body.iccid;
+    var msisdn = req.body.msisdn;
+    var imei = req.body.imei;
+    var network = req.body.network;
+    var active = req.body.active;
+    var dateAdded = req.body.dateAdded;
+    mydb.addRowInTable(config, 'SimCards', '(' + iccid + ', ' + msisdn + ', ' + imei + ', ' + network + ', ' + active + ', ' + dateAdded + ')');
+});
+
+app.post('/api/SMS/addrow', function(req, res) {
+    var smsId = req.body.smsId;
+    var iccid = req.body.iccid;
+    var message = req.body.message;
+    var fromNumber = req.body.fromNumber;
+    var timestamp = req.body.timestamp;
+    mydb.addRowInTable(config, 'SMS', '(' + smsId + ', ' + iccid + ', ' + message + ', ' + fromNumber + ', ' + timestamp + ')');
+});
+
+app.post('/api/SimCardDataPackages/addrow', function(req, res) {
+    var simCardDataPackageId = req.body.simCardDataPackageId;
+    var dateFrom = req.body.dateFrom;
+    var dateTo = req.body.dateTo;
+    var active = req.body.active;
+    var requestId = req.body.requestId;
+    mydb.addRowInTable(config, 'SMS', '(' + simCardDataPackageId + ', ' + dateFrom + ', ' + dateTo + ', ' + active + ', ' + requestId + ')');
+});
+
+app.post('/api/Usage/addrow', function(req, res) {
+    var usageId = req.body.usageId;
+    var simCardDataPackageId = req.body.simCardDataPackageId;
+    var timestamp = req.body.timestamp;
+    var sent = req.body.sent;
+    var received = req.body.received;
+    var total = req.body.total;
+    mydb.addRowInTable(config, 'Usage', '(' + usageId + ', ' + simCardDataPackageId + ', ' + timestamp + ', ' + sent + ', ' + received + ', ' + total + ')');
+});
+
+app.post('/api/Requests/addrow', function(req, res) {
+    var requestId = req.body.requestId;
+    var iccid = req.body.iccid;
+    var dataPackageId = req.body.dataPackageId;
+    var timestamp = req.body.timestamp;
+    var approved = req.body.approved;
+    var comments = req.body.comments;
+    mydb.addRowInTable(config, 'Requests', '(' + requestId + ', ' + iccid + ', ' + dataPackageId + ', ' + timestamp + ', ' + approved + ', ' + comments + ')');
+});
+
+app.post('/api/DataPackages/addrow', function(req, res) {
+    var dataPackageId = req.body.dataPackageId;
+    var description = req.body.description;
+    var sizeBytes = req.body.sizeBytes;
+    mydb.addRowInTable(config, 'DataPackages', '(' + dataPackageId + ', ' + description + ', ' + sizeBytes + ')');
 });
 
 // error handling
