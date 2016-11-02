@@ -61,12 +61,14 @@ app.post('/api/Devices/addrow', function(req, res) {
     var app_device_id = req.body.appdeviceid;
     var description = req.body.description;
     mydb.addRowInTable(config, 'Devices', '(' + device_id + ', ' + appDeviceId + ', ' + description + ')');
+    res.json(req.body);
 });
 
 app.post('/api/DeviceSimCards/addrow', function(req, res) {
     var device_id = req.body.deviceid;
     var iccid = req.body.iccid;
     mydb.addRowInTable(config, 'DeviceSimCards', '(' + device_id + ', ' + iccid + ')');
+    res.json(req.body);
 });
 
 app.post('/api/SimCards/addrow', function(req, res) {
@@ -77,6 +79,7 @@ app.post('/api/SimCards/addrow', function(req, res) {
     var active = req.body.active;
     var dateAdded = req.body.dateAdded;
     mydb.addRowInTable(config, 'SimCards', '(' + iccid + ', ' + msisdn + ', ' + imei + ', ' + network + ', ' + active + ', ' + dateAdded + ')');
+    res.json(req.body);
 });
 
 app.post('/api/SMS/addrow', function(req, res) {
@@ -86,6 +89,7 @@ app.post('/api/SMS/addrow', function(req, res) {
     var fromNumber = req.body.fromNumber;
     var timestamp = req.body.timestamp;
     mydb.addRowInTable(config, 'SMS', '(' + smsId + ', ' + iccid + ', ' + message + ', ' + fromNumber + ', ' + timestamp + ')');
+    res.json(req.body);
 });
 
 app.post('/api/SimCardDataPackages/addrow', function(req, res) {
@@ -95,6 +99,7 @@ app.post('/api/SimCardDataPackages/addrow', function(req, res) {
     var active = req.body.active;
     var requestId = req.body.requestId;
     mydb.addRowInTable(config, 'SMS', '(' + simCardDataPackageId + ', ' + dateFrom + ', ' + dateTo + ', ' + active + ', ' + requestId + ')');
+    res.json(req.body);
 });
 
 app.post('/api/Usage/addrow', function(req, res) {
@@ -105,6 +110,7 @@ app.post('/api/Usage/addrow', function(req, res) {
     var received = req.body.received;
     var total = req.body.total;
     mydb.addRowInTable(config, 'Usage', '(' + usageId + ', ' + simCardDataPackageId + ', ' + timestamp + ', ' + sent + ', ' + received + ', ' + total + ')');
+    res.json(req.body);
 });
 
 app.post('/api/Requests/addrow', function(req, res) {
@@ -115,6 +121,7 @@ app.post('/api/Requests/addrow', function(req, res) {
     var approved = req.body.approved;
     var comments = req.body.comments;
     mydb.addRowInTable(config, 'Requests', '(' + requestId + ', ' + iccid + ', ' + dataPackageId + ', ' + timestamp + ', ' + approved + ', ' + comments + ')');
+    res.json(req.body);
 });
 
 app.post('/api/DataPackages/addrow', function(req, res) {
@@ -122,6 +129,7 @@ app.post('/api/DataPackages/addrow', function(req, res) {
     var description = req.body.description;
     var sizeBytes = req.body.sizeBytes;
     mydb.addRowInTable(config, 'DataPackages', '(' + dataPackageId + ', ' + description + ', ' + sizeBytes + ')');
+    res.json(req.body);
 });
 
 // error handling
