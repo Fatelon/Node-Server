@@ -57,17 +57,17 @@ app.post('/api/addmydev', function(req, res) {
 });
 
 app.post('/api/Devices/addrow', function(req, res) {
-    var device_id = req.body.deviceid;
-    var app_device_id = req.body.appdeviceid;
+    var deviceId = req.body.deviceId;
+    var app_device_id = req.body.appDeviceId;
     var description = req.body.description;
-    mydb.addRowInTable(config, 'Devices', '(' + device_id + ', ' + appDeviceId + ', ' + description + ')');
+    mydb.addRowInTable(config, 'Devices', '(' + deviceId + ', ' + appDeviceId + ', ' + description + ')');
     res.json(req.body);
 });
 
 app.post('/api/DeviceSimCards/addrow', function(req, res) {
-    var device_id = req.body.deviceid;
+    var deviceId = req.body.deviceid;
     var iccid = req.body.iccid;
-    mydb.addRowInTable(config, 'DeviceSimCards', '(' + device_id + ', ' + iccid + ')');
+    mydb.addRowInTable(config, 'DeviceSimCards', '(' + deviceId + ', ' + iccid + ')');
     res.json(req.body);
 });
 
