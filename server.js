@@ -56,9 +56,9 @@ app.post('/api/addmydev', function(req, res) {
 //    res.send(id + ' ' + value);
 });
 
-app.post('/api/Devices/addrow', function(req, res) {
+app.post('/api/devices/addrow', function(req, res) {
     var deviceId = req.body.deviceId;
-    var app_device_id = req.body.appDeviceId;
+    var appDeviceId = req.body.appDeviceId;
     var description = req.body.description;
     mydb.addRowInTable(config, 'Devices', '(' + deviceId + ', ' + appDeviceId + ', ' + description + ')');
     res.json(req.body);
