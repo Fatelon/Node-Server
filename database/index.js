@@ -24,7 +24,7 @@ module.exports.getColumnFromTable = function(config, tableName, columnName) {
   dataBaseInsert(config, queryText);  
 }
 
-module.exports.testF = function(config, res) {
+module.exports.testF = function(config) {
   var connection1 = new sql.Connection(config, function(err) {
     if (err != null) {
       console.log('DB SELECT - ' + err);
@@ -32,8 +32,8 @@ module.exports.testF = function(config, res) {
     var request = new sql.Request(connection1);
     request.query('SELECT packageSize FROM TopUp', function(err, recordset) {
         console.log('DB SELECT recordset - %j', recordset);
-		res.json(recordset);
+		return recordset;
     });
- 
+	
   });
 }

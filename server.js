@@ -3,7 +3,8 @@ var express = require('express'),
     fs      = require('fs'),
     app     = express(),
     eps     = require('ejs'),
-    sql    = require('mssql'),
+    sql     = require('mssql'),
+	async   = require("async"),
     mydb    = require('./database');
 	
 	
@@ -38,6 +39,8 @@ var config = {
 console.log('out: %j', mydb.testF(config));
 
   
+var r = mydb.testF(config).then(console.log('return is: - %j', r));
+  
 //mydb.addRowInTable(config, 'MyDev', '(17, 17)');
   
   
@@ -52,7 +55,7 @@ app.get('/log', function (req, res) {
 });
 
 app.get('/packagesizes', function (req, res) {
-  mydb.testF(config, res);
+//  mydb.testF(config, res);
 });
 
 app.post('/api/addmydev', function(req, res) {
