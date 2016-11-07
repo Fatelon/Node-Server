@@ -65,13 +65,13 @@ app.get('/packagesizes', function (req, res) {
 
 app.get('/pack1', function (req, res) {
   mydb.testF(config, function (recordset) {
-	res.send(recordset);
+	res.send(JSON.parse('{"contacts": ' + JSON.stringify(recordset) + '}'));
 	});
 });
 
 app.get('/pack2', function (req, res) {
   mydb.testF(config, function (recordset) {
-	res.json('{' + recordset + '}');
+	res.json(JSON.parse('{"contacts": ' + JSON.stringify(recordset) + '}'));
 	});
 });
 
