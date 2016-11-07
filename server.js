@@ -55,8 +55,20 @@ app.get('/log', function (req, res) {
 });
 
 app.get('/packagesizes', function (req, res) {
-  mydb.testF(config, function (result) {
-	res.json(result);
+  mydb.testF(config, function (recordset) {
+	res.json(recordset);
+	});
+});
+
+app.get('/pack1', function (req, res) {
+  mydb.testF(config, function (recordset) {
+	res.send(recordset);
+	});
+});
+
+app.get('/pack2', function (req, res) {
+  mydb.testF(config, function (recordset) {
+	res.json('{' + recordset + '}');
 	});
 });
 
