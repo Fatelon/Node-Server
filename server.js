@@ -59,7 +59,7 @@ app.get('/log', function (req, res) {
 
 app.get('/packagesizes', function (req, res) {
   mydb.testF(config, function (recordset) {
-	res.json(recordset);
+	res.json(JSON.parse('{"contacts": ' + JSON.stringify(recordset) + '}'));
 	});
 });
 
