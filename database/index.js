@@ -19,3 +19,21 @@ module.exports.addRowInTable = function(config, tableName, params) {
   dataBaseInsert(config, queryText);  
 }
 
+module.exports.getColumnFromTable = function(config, tableName, columnName) {
+  var queryText = 'SELECT ' + columName + ' FROM ' + tableName;
+  dataBaseInsert(config, queryText);  
+}
+
+module.exports.testF = function(config, res) {
+  var connection1 = new sql.Connection(config, function(err) {
+    if (err != null) {
+      console.log('DB SELECT - ' + err);
+    }
+    var request = new sql.Request(connection1);
+    request.query('SELECT packageSize FROM TopUp', function(err, recordset) {
+        console.log('DB SELECT recordset - %j', recordset);
+		res.json(recordset);
+    });
+ 
+  });
+}

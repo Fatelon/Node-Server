@@ -26,7 +26,7 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
   
 var config = {
     user: 'DB_A1252A_fatelon_admin',
-    password: '22091993!s',
+    password: 'adminpass!1',
     server: 'sql5027.smarterasp.net', // You can use 'localhost\\instance' to connect to named instance 
     database: 'DB_A1252A_fatelon',
  
@@ -34,6 +34,9 @@ var config = {
         encrypt: true // Use this if you're on Windows Azure 
     }
 }  
+  
+console.log('out: %j', mydb.testF(config));
+
   
 //mydb.addRowInTable(config, 'MyDev', '(17, 17)');
   
@@ -46,6 +49,10 @@ app.get('/log', function (req, res) {
   console.log('Go to /log');
   res.status(200).send('');
 //  res.send('{"status": [{"st": "ok"]}}');
+});
+
+app.get('/packagesizes', function (req, res) {
+  mydb.testF(config, res);
 });
 
 app.post('/api/addmydev', function(req, res) {
