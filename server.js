@@ -55,8 +55,8 @@ app.get('/log', function (req, res) {
 });
 
 app.get('/packagesizes', function (req, res) {
-  mydb.testF(config, function (res) {
-	res.json(res);
+  mydb.testF(config, function (result) {
+	res.json(result);
 	});
 });
 
