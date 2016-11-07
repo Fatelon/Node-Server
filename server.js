@@ -38,7 +38,10 @@ var config = {
   
 //console.log('out: %j', mydb.testF(config));
 
-  
+mydb.testF(config, function (recordset) {
+	var r = JSON.stringify(recordset);
+	console.log(JSON.parse('{"contacts": ' + r + '}'));
+	});
 
   
 //mydb.addRowInTable(config, 'MyDev', '(17, 17)');
