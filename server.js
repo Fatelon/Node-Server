@@ -4,7 +4,7 @@ var express = require('express'),
     app     = express(),
     eps     = require('ejs'),
     sql     = require('mssql'),
-	async   = require("async"),
+	//async   = require("async"),
     mydb    = require('./database');
 	
 	
@@ -55,9 +55,9 @@ app.get('/log', function (req, res) {
 });
 
 app.get('/packagesizes', function (req, res) {
-  mydb.testF(config, function (res) {
-	res.json(res);
-	});
+  //mydb.testF(config, function (res) {
+	//res.json(res);
+	//});
 });
 
 app.post('/api/addmydev', function(req, res) {
