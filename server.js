@@ -71,7 +71,7 @@ app.get('/pack1', function (req, res) {
 
 app.get('/pack2', function (req, res) {
   mydb.testF(config, function (recordset) {
-	res.json(JSON.parse('{"contacts": ' + JSON.stringify(recordset) + '}'));
+	res.json(recordset);
 	});
 });
 
