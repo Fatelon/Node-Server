@@ -36,10 +36,10 @@ var config = {
     }
 }  
   
-console.log('out: %j', mydb.testF(config));
+//console.log('out: %j', mydb.testF(config));
 
   
-var r = mydb.testF(config).then(console.log('return is: - %j', r));
+
   
 //mydb.addRowInTable(config, 'MyDev', '(17, 17)');
   
@@ -55,7 +55,9 @@ app.get('/log', function (req, res) {
 });
 
 app.get('/packagesizes', function (req, res) {
-//  mydb.testF(config, res);
+  mydb.testF(config, function (res) {
+	res.json(res);
+	});
 });
 
 app.post('/api/addmydev', function(req, res) {
