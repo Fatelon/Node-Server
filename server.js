@@ -55,9 +55,9 @@ app.get('/log', function (req, res) {
 });
 
 app.get('/packagesizes', function (req, res) {
-  //mydb.testF(config, function (res) {
-	//res.json(res);
-	//});
+  mydb.testF(config, function (res) {
+	res.json(res);
+	});
 });
 
 app.post('/api/addmydev', function(req, res) {
