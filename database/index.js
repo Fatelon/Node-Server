@@ -30,7 +30,7 @@ module.exports.selectDataPackages = function(config, callback) {
       console.log('DB SELECT - ' + err);
     }
     var request = new sql.Request(connection1);
-    request.query('SELECT dataPackageId ,sizeBytes FROM DataPackages', function(err, recordset) {
+    request.query('SELECT dataPackageId,description,sizeBytes FROM DataPackages', function(err, recordset) {
         console.log('DB SELECT recordset - %j', recordset);
 		callback(recordset);
     });
