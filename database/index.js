@@ -16,6 +16,7 @@ var dataBaseInsert = function(config, queryText) {
 
 module.exports.addRowInTable = function(config, tableName, params) {
   var queryText = 'INSERT INTO ' + tableName + ' VALUES ' + params;
+  console.log(queryText);
   dataBaseInsert(config, queryText);  
 }
 
@@ -35,5 +36,17 @@ module.exports.selectDataPackages = function(config, callback) {
 		callback(recordset);
     });
 	
+  });
+}
+
+module.exports.dBInsert = function(config, queryText, callback) {
+  var connection1 = new sql.Connection(config, function(err) {
+    if (err != null) {
+      console.log('dataBaseInsert - ' + err);
+    }
+    var request = new sql.Request(connection1);
+    request.query(queryText, function(err, recordset) {
+		callback(recordset);
+    });
   });
 }

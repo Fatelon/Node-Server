@@ -36,13 +36,26 @@ var config = {
     }
 }  
 
-mydb.selectDataPackages(config, function (recordset) {
-	var r = JSON.stringify(recordset);
-	console.log(JSON.parse('{"contacts": ' + r + '}'));
-	});
+//mydb.selectDataPackages(config, function (recordset) {
+//	var r = JSON.stringify(recordset);
+//	console.log(JSON.parse('{"contacts": ' + r + '}'));
+//	});
 
-  
+var iccid = "fasdf";
+var datapackageid = 1212;
+var timestamp = new Date().toISOString();
+var approved = 1;
+var comments = "request automatic approved on server";
+var tableName = 'Requests (iccid,dataPackageId,timestamp,approved,comments)'
+var parameters = '(\'' + iccid + '\', \'' + datapackageid + '\', \'' + timestamp + '\', \'' + approved + '\', \'' + comments + '\')';
+var queryText = 'INSERT INTO ' + tableName + ' VALUES ' + parameters;
+mydb.dBInsert(config, queryText, function (recordset) {
+	console.log(recordset);
+});
+
 //mydb.addRowInTable(config, 'MyDev', '(17, 17)');
+  
+  
   
   
 app.get('/', function (req, res) {
@@ -142,14 +155,17 @@ app.post('/api/usage/addrow', function(req, res) {
 });
 
 app.post('/api/requests/addrow', function(req, res) {
-    var requestid = req.body.requestid;
     var iccid = req.body.iccid;
     var datapackageid = req.body.datapackageid;
-    var timestamp = req.body.timestamp;
-    var approved = req.body.approved;
-    var comments = req.body.comments;
-    mydb.addRowInTable(config, 'Requests', '(\'' + requestid + '\', \'' + iccid + '\', \'' + datapackageid + '\', \'' + timestamp + '\', \'' + approved + '\', \'' + comments + '\')');
-    res.json(req.body);
+    var timestamp = new Date().toISOString();
+    var approved = 1;
+    var comments = "request automatic approved on server";
+	var tableName = 'Requests (iccid,dataPackageId,timestamp,approved,comments)'
+	var parameters = '(\'' + iccid + '\', \'' + datapackageid + '\', \'' + timestamp + '\', \'' + approved + '\', \'' + comments + '\')';
+	var queryText = 'INSERT INTO ' + tableName + ' VALUES ' + parameters;
+    mydb.dBInsert(config, queryText, function (recordset) {
+		res.json(recordset);
+	});
 });
 
 app.post('/api/datapackages/addrow', function(req, res) {
