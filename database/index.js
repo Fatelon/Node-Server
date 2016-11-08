@@ -24,13 +24,13 @@ module.exports.getColumnFromTable = function(config, tableName, columnName) {
   dataBaseInsert(config, queryText);  
 }
 
-module.exports.testF = function(config, callback) {
+module.exports.selectDataPackages = function(config, callback) {
   var connection1 = new sql.Connection(config, function(err) {
     if (err != null) {
       console.log('DB SELECT - ' + err);
     }
     var request = new sql.Request(connection1);
-    request.query('SELECT sizeBytes FROM DataPackages', function(err, recordset) {
+    request.query('SELECT dataPackageId ,sizeBytes FROM DataPackages', function(err, recordset) {
         console.log('DB SELECT recordset - %j', recordset);
 		callback(recordset);
     });

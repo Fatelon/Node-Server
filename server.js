@@ -35,10 +35,8 @@ var config = {
         encrypt: true // Use this if you're on Windows Azure 
     }
 }  
-  
-//console.log('out: %j', mydb.testF(config));
 
-mydb.testF(config, function (recordset) {
+mydb.selectDataPackages(config, function (recordset) {
 	var r = JSON.stringify(recordset);
 	console.log(JSON.parse('{"contacts": ' + r + '}'));
 	});
@@ -73,7 +71,7 @@ app.post('/adddevice', function (req, res) {
 });
 
 app.get('/packagesizes', function (req, res) {
-  mydb.testF(config, function (recordset) {
+  mydb.selectDataPackages(config, function (recordset) {
 	res.json(recordset);
 	});
 });
