@@ -30,7 +30,7 @@ module.exports.testF = function(config, callback) {
       console.log('DB SELECT - ' + err);
     }
     var request = new sql.Request(connection1);
-    request.query('SELECT packageSize FROM TopUp', function(err, recordset) {
+    request.query('SELECT sizeBytes  FROM DataPackage ', function(err, recordset) {
         console.log('DB SELECT recordset - %j', recordset);
 		callback(recordset);
     });

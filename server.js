@@ -57,6 +57,21 @@ app.get('/log', function (req, res) {
 //  res.send('{"status": [{"st": "ok"]}}');
 });
 
+app.post('/adddevice', function (req, res) {
+  var deviceid = req.body.deviceid;
+  var appdeviceid = req.body.appdeviceid;
+  var description = req.body.description;
+  var iccid = req.body.iccid;var msisdn = req.body.msisdn;
+  var imei = req.body.imei;
+  var network = req.body.network;
+  var active = req.body.active;
+  var dateadded = req.body.dateadded;
+  mydb.addRowInTable(config, 'Devices', '(\'' + deviceid + '\', \'' + appdeviceid + '\', \'' + description + '\')');
+  mydb.addRowInTable(config, 'DeviceSimCards', '(\'' + deviceid + '\', \'' + iccid + '\')');
+  mydb.addRowInTable(config, 'SimCards', '(\'' + iccid + '\', \'' + msisdn + '\', \'' + imei + '\', \'' + network + '\', \'' + active + '\', \'' + dateadded + '\')');
+  
+});
+
 app.get('/packagesizes', function (req, res) {
   mydb.testF(config, function (recordset) {
 	res.json(recordset);
