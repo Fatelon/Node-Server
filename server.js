@@ -41,18 +41,6 @@ var config = {
 //	console.log(JSON.parse('{"contacts": ' + r + '}'));
 //	});
 
-var iccid = "fasdf";
-var datapackageid = 1212;
-var timestamp = new Date().toISOString();
-var approved = 1;
-var comments = "request automatic approved on server";
-var tableName = 'Requests (iccid,dataPackageId,timestamp,approved,comments)'
-var parameters = '(\'' + iccid + '\', \'' + datapackageid + '\', \'' + timestamp + '\', \'' + approved + '\', \'' + comments + '\')';
-var queryText = 'INSERT INTO ' + tableName + ' VALUES ' + parameters;
-mydb.dBInsert(config, queryText, function (recordset) {
-	console.log(recordset);
-});
-
 //mydb.addRowInTable(config, 'MyDev', '(17, 17)');
   
   
