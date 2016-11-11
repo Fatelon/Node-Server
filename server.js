@@ -72,7 +72,7 @@ app.post('/addnewdevice', function (req, res) {
   mydb.addRowInTable(config, 'Devices', '(\'' + deviceid + '\', \'' + appdeviceid + '\', \'' + description + '\')');
   mydb.addRowInTable(config, 'DeviceSimCards', '(\'' + deviceid + '\', \'' + iccid + '\')');
   mydb.addRowInTable(config, 'SimCards', '(\'' + iccid + '\', \'' + msisdn + '\', \'' + imei + '\', \'' + network + '\', \'' + active + '\', \'' + dateadded + '\')');
-  res.json('[{"status":"ok"}]');
+  res.json('[{"status":1}]');
 });
 
 app.get('/packagesizes', function (req, res) {
