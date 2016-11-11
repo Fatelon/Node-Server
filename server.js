@@ -43,7 +43,7 @@ var config = {
 //mydb.addRowInTable(config, 'MyDev', '(17, 17)');
   
   
-  
+ console.log(JSON.parse('{"status":"ok"}'));
   
 app.get('/', function (req, res) {
   res.render('index.html', { pageCountMessage : null});
@@ -68,7 +68,7 @@ app.post('/addnewdevice', function (req, res) {
   mydb.addRowInTable(config, 'Devices', '(\'' + deviceid + '\', \'' + appdeviceid + '\', \'' + description + '\')');
   mydb.addRowInTable(config, 'DeviceSimCards', '(\'' + deviceid + '\', \'' + iccid + '\')');
   mydb.addRowInTable(config, 'SimCards', '(\'' + iccid + '\', \'' + msisdn + '\', \'' + imei + '\', \'' + network + '\', \'' + active + '\', \'' + dateadded + '\')');
-  res.json('status:ok');
+  res.json('{status:ok}');
 });
 
 app.get('/packagesizes', function (req, res) {
