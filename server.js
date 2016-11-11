@@ -39,7 +39,6 @@ var config = {
 //mydb.selectDataPackages(config, function (recordset) {
 //	var r = JSON.stringify(recordset);
 //	console.log(JSON.parse('{"contacts": ' + r + '}'));
-//	});
 
 //mydb.addRowInTable(config, 'MyDev', '(17, 17)');
   
@@ -56,15 +55,16 @@ app.get('/log', function (req, res) {
 //  res.send('{"status": [{"st": "ok"]}}');
 });
 
-app.post('/adddevice', function (req, res) {
+app.post('/addnewdevice', function (req, res) {
   var deviceid = req.body.deviceid;
   var appdeviceid = req.body.appdeviceid;
   var description = req.body.description;
-  var iccid = req.body.iccid;var msisdn = req.body.msisdn;
+  var iccid = req.body.iccid;
+  var msisdn = req.body.msisdn;
   var imei = req.body.imei;
   var network = req.body.network;
-  var active = req.body.active;
-  var dateadded = req.body.dateadded;
+  var active = 1;
+  var dateadded = new Date().toISOString();
   mydb.addRowInTable(config, 'Devices', '(\'' + deviceid + '\', \'' + appdeviceid + '\', \'' + description + '\')');
   mydb.addRowInTable(config, 'DeviceSimCards', '(\'' + deviceid + '\', \'' + iccid + '\')');
   mydb.addRowInTable(config, 'SimCards', '(\'' + iccid + '\', \'' + msisdn + '\', \'' + imei + '\', \'' + network + '\', \'' + active + '\', \'' + dateadded + '\')');

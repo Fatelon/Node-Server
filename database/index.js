@@ -45,8 +45,6 @@ module.exports.dBInsert = function(config, queryText, callback) {
       console.log('dataBaseInsert - ' + err);
     }
     var request = new sql.Request(connection1);
-    request.query(queryText, function(err, recordset) {
-		callback(recordset);
-    });
+    callback(request.query(queryText, function(err, recordset) {}));
   });
 }
