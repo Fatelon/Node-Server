@@ -35,7 +35,7 @@ var config = {
         encrypt: true // Use this if you're on Windows Azure 
     }
 }  
-
+	
 //console.log(new Date().toISOString());
 
 
@@ -148,12 +148,12 @@ app.post('/api/requests/addrow', function(req, res) {
     var datapackageid = req.body.datapackageid;
     var timestamp = new Date().toISOString();
     var approved = 1;
-    var comments = "request";
-	var tableName = 'Requests (iccid,dataPackageId,timestamp,approved,comments)'
-	var parameters = '(\'' + iccid + '\', \'' + datapackageid + '\', \'' + timestamp + '\', \'' + approved + '\', \'' + comments + '\')';
+    var comments = 'request';
+	var tableName = 'Requests (iccid,dataPackageId,timestamp,approved,comments)';
+	var parameters = '(\'' + iccid + '\',\'' + datapackageid + '\',\'' + timestamp + '\',' + approved + ',\'' + comments + '\')';
 	var queryText = 'INSERT INTO ' + tableName + ' VALUES ' + parameters;
     mydb.dBInsert(config, queryText, function (recordset) {
-		res.json(recordset);
+		res.json('[{"status":' + recordset + '}]');
 	});
 });
 
