@@ -81,6 +81,12 @@ app.get('/packagesizes', function (req, res) {
 	});
 });
 
+app.get('/simcarddatapackages', function (req, res) {
+  mydb.getSimCardDataPackages(config, function (recordset) {
+	res.json(recordset);
+	});
+});
+
 app.post('/api/addmydev', function(req, res) {
     var id = req.body.id;
     var value = req.body.value;
