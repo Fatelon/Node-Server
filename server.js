@@ -36,18 +36,9 @@ var config = {
     }
 }  
 
-//mydb.selectDataPackages(config, function (recordset) {
-//	var r = JSON.stringify(recordset);
-//	console.log(JSON.parse('{"contacts": ' + r + '}'));
+//console.log(new Date().toISOString());
 
-//mydb.addRowInTable(config, 'MyDev', '(17, 17)');
-  
-  
-  mydb.selectDataPackages(config, function (recordset) {
-	console.log("ttt - %j", recordset);
-	});
-  
- console.log(JSON.parse('[{"status":"ok"}]'));
+
   
 app.get('/', function (req, res) {
   res.render('index.html', { pageCountMessage : null});
@@ -157,7 +148,7 @@ app.post('/api/requests/addrow', function(req, res) {
     var datapackageid = req.body.datapackageid;
     var timestamp = new Date().toISOString();
     var approved = 1;
-    var comments = "request automatic approved on server";
+    var comments = "request";
 	var tableName = 'Requests (iccid,dataPackageId,timestamp,approved,comments)'
 	var parameters = '(\'' + iccid + '\', \'' + datapackageid + '\', \'' + timestamp + '\', \'' + approved + '\', \'' + comments + '\')';
 	var queryText = 'INSERT INTO ' + tableName + ' VALUES ' + parameters;
