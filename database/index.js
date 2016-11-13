@@ -31,7 +31,21 @@ module.exports.selectDataPackages = function(config, callback) {
       console.log('DB SELECT - ' + err);
     }
     var request = new sql.Request(connection1);
-    request.query('SELECT dataPackageId,description,sizeBytes FROM DataPackages', function(err, recordset) {
+    request.query('SELECT * FROM DataPackages', function(err, recordset) {
+        console.log('DB SELECT recordset - %j', recordset);
+		callback(recordset);
+    });
+	
+  });
+}
+
+module.exports.getRequests = function(config, iccid, callback) {
+  var connection1 = new sql.Connection(config, function(err) {
+    if (err != null) {
+      console.log('DB SELECT - ' + err);
+    }
+    var request = new sql.Request(connection1);
+    request.query('SELECT * FROM Requests WHERE iccid = \'' + iccid + '\' AND approved = \'1\'', function(err, recordset) {
         console.log('DB SELECT recordset - %j', recordset);
 		callback(recordset);
     });
@@ -45,7 +59,7 @@ module.exports.getSimCardDataPackages = function(config, callback) {
       console.log('DB SELECT - ' + err);
     }
     var request = new sql.Request(connection1);
-    request.query('SELECT simCardDataPackageId,dateFrom,dateTo,active,requestId FROM SimCardDataPackages', function(err, recordset) {
+    request.query('SELECT * FROM SimCardDataPackages', function(err, recordset) {
         console.log('DB SELECT recordset - %j', recordset);
 		callback(recordset);
     });
