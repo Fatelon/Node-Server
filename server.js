@@ -41,7 +41,7 @@ var config = {
 var iccid = '897010286580613976';
 var recordset = 1;
 
-console.log(JSON.stringify([ { status: recordset } ]));
+console.log(JSON.stringify([{ status: recordset }]));
 
 
 //mydb.getRequests(config, iccid, function (recordset) {
@@ -174,7 +174,7 @@ app.post('/api/requests/addrow', function(req, res) {
 	var parameters = '(\'' + iccid + '\',\'' + datapackageid + '\',\'' + timestamp + '\',' + approved + ',\'' + comments + '\')';
 	var queryText = 'INSERT INTO ' + tableName + ' VALUES ' + parameters;
     mydb.dBInsert(config, queryText, function (recordset) {
-		res.send(JSON.stringify([ { status: recordset } ]));
+		res.json([ { status: recordset } ]);
 		//res.send('[{"status": ' + recordset + '}]');
 	});
 });
