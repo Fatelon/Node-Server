@@ -60,7 +60,7 @@ app.get('/log', function (req, res) {
 });
 
 app.get('/getrequests', function (req, res) {
-  var iccid = req.body.iccid;
+  var iccid = req.query.iccid;
   mydb.getRequests(config, iccid, function (recordset) {
 	res.json(recordset);
 	});
