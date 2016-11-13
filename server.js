@@ -38,14 +38,11 @@ var config = {
 	
 //console.log(new Date().toISOString());
 
+var iccid = '897010286580613976';
+var recordset = 1;
 
-var requestId = "65";
-mydb.getSimCardDataPackages(config, requestId, function (recordset) {
-	console.log(recordset);
-});
-	
-	
-var iccid = "897010286580613976";
+console.log(JSON.stringify([ { status: recordset } ]));
+
 
 //mydb.getRequests(config, iccid, function (recordset) {
 	//for
@@ -177,7 +174,8 @@ app.post('/api/requests/addrow', function(req, res) {
 	var parameters = '(\'' + iccid + '\',\'' + datapackageid + '\',\'' + timestamp + '\',' + approved + ',\'' + comments + '\')';
 	var queryText = 'INSERT INTO ' + tableName + ' VALUES ' + parameters;
     mydb.dBInsert(config, queryText, function (recordset) {
-		res.json('[{"status":' + recordset + '}]');
+		res.send(JSON.stringify([ { status: recordset } ]));
+		//res.send('[{"status": ' + recordset + '}]');
 	});
 });
 
