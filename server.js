@@ -61,8 +61,9 @@ app.get('/log', function (req, res) {
 
 app.get('/getrequests', function (req, res) {
   var iccid = req.query.iccid;
+  res.send('Response send to client::'+req.query.name);
   mydb.getRequests(config, iccid, function (recordset) {
-	res.json(recordset);
+	//res.json(recordset);
 	});
 });
 
