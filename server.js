@@ -38,16 +38,23 @@ var config = {
 	
 //console.log(new Date().toISOString());
 
+
+var requestId = "65";
+mydb.getSimCardDataPackages(config, requestId, function (recordset) {
+	console.log(recordset);
+});
+	
+	
 var iccid = "897010286580613976";
 
-mydb.getRequests(config, iccid, function (recordset) {
+//mydb.getRequests(config, iccid, function (recordset) {
 	//for
-	console.log(recordset);
-	recordset.forEach(function(item, index) {
-		console.log(recordset[index].requestId);
-	});
-});
-
+	//console.log(recordset);
+	//recordset.forEach(function(item, index) {
+		//console.log(recordset[index].requestId);
+	//});
+//});
+//////////////////////////
   
 app.get('/', function (req, res) {
   res.render('index.html', { pageCountMessage : null});
@@ -73,7 +80,8 @@ app.get('/packagesizes', function (req, res) {
 });
 
 app.get('/simcarddatapackages', function (req, res) {
-  mydb.getSimCardDataPackages(config, function (recordset) {
+  var requestId = req.query.requestid;
+  mydb.getSimCardDataPackages(config, requestId, function (recordset) {
 	res.json(recordset);
 	});
 });
@@ -163,7 +171,7 @@ app.post('/api/requests/addrow', function(req, res) {
     var iccid = req.body.iccid;
     var datapackageid = req.body.datapackageid;
     var timestamp = new Date().toISOString();
-    var approved = 1;
+    var approved = 0;
     var comments = 'request';
 	var tableName = 'Requests (iccid,dataPackageId,timestamp,approved,comments)';
 	var parameters = '(\'' + iccid + '\',\'' + datapackageid + '\',\'' + timestamp + '\',' + approved + ',\'' + comments + '\')';

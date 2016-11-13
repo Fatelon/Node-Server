@@ -53,13 +53,13 @@ module.exports.getRequests = function(config, iccid, callback) {
   });
 }
 
-module.exports.getSimCardDataPackages = function(config, callback) {
+module.exports.getSimCardDataPackages = function(config, requestId, callback) {
   var connection1 = new sql.Connection(config, function(err) {
     if (err != null) {
       console.log('DB SELECT - ' + err);
     }
     var request = new sql.Request(connection1);
-    request.query('SELECT * FROM SimCardDataPackages', function(err, recordset) {
+    request.query('SELECT * FROM SimCardDataPackages WHERE requestId = \'' + requestId + '\'', function(err, recordset) {
         console.log('DB SELECT recordset - %j', recordset);
 		callback(recordset);
     });
