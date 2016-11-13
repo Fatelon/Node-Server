@@ -174,7 +174,7 @@ app.post('/api/requests/addrow', function(req, res) {
 	var parameters = '(\'' + iccid + '\',\'' + datapackageid + '\',\'' + timestamp + '\',' + approved + ',\'' + comments + '\')';
 	var queryText = 'INSERT INTO ' + tableName + ' VALUES ' + parameters;
     mydb.dBInsert(config, queryText, function (recordset) {
-		res.json([ { status: recordset } ]);
+		res.json({ status: recordset });
 		//res.send('[{"status": ' + recordset + '}]');
 	});
 });
