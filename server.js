@@ -109,7 +109,7 @@ app.post('/api/requests/addrow', function(req, res) {
 app.post('/setsimcarddatapackagesnotactive', function (req, res) {
 	var dbName 	  = 'SimCardDataPackages',
 		param     = 'active=0',  
-		condition = 'simCardDataPackageId=' + req.body.simCardDataPackageId;
+		condition = 'simCardDataPackageId=' + req.body.simcarddatapackageid;
 	mydb.dbUpdate(config, dbName, param, condition, function (recordset) {
 		res.json({ status: recordset });
 	});
