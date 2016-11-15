@@ -38,12 +38,12 @@ var config = {
     }
 }  
 
-var dbName 	  = 'SimCardDataPackages',
-	param     = 'active=0',  
-	condition = 'simCardDataPackageId=4';
-mydb.dbUpdate(config, dbName, param, condition, function (recordset) {
-	console.log(recordset);
-  });
+//var dbName 	  = 'SimCardDataPackages',
+	//param     = 'active=0',  
+	//condition = 'simCardDataPackageId=4';
+//mydb.dbUpdate(config, dbName, param, condition, function (recordset) {
+	//console.log(recordset);
+  //});
   
 app.get('/', function (req, res) {
   res.render('index.html', { pageCountMessage : null});
