@@ -105,13 +105,12 @@ app.post('/api/requests/addrow', function(req, res) {
 });
 
 app.post('/api/usage/addrow', function(req, res) {
-    var simcarddatapackage = req.body.simcarddatapackage;
-    var timestamp = req.body.timestamp;
+    var simcarddatapackageid = req.body.simcarddatapackageid;
+    var timestamp = new Date().toISOString();
     var sent = req.body.sent;
     var received = req.body.received;
-	var total = req.body.total;
-	var tableName = 'Usage (simcarddatapackage,timestamp,sent,received,total)';
-	var parameters = '(\'' + simcarddatapackage + '\',\'' + timestamp + '\',\'' + sent + '\',' + received + ',\'' + total + '\')';
+	var tableName = 'Usage (simCardDataPackageId,timestamp,sent,received)';
+	var parameters = '(\'' + simcarddatapackageid + '\',\'' + timestamp + '\',\'' + sent + '\',' + received + '\')';
 	var queryText = 'INSERT INTO ' + tableName + ' VALUES ' + parameters;
     mydb.dBInsert(config, queryText, function (recordset) {
 		res.json({ status: recordset });
