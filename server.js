@@ -109,7 +109,7 @@ app.post('/setsimcarddatapackagesnotactive', function (req, res) {
 	var dbName 	  = 'SimCardDataPackages',
 		param     = 'active=0',  
 		condition = 'simCardDataPackageId=' + req.query.simcarddatapackageid;
-		res.json({ status: condition });
+		res.json({ st: condition });
 	mydb.dbUpdate(config, dbName, param, condition, function (recordset) {
 		
 	});
