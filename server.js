@@ -97,7 +97,7 @@ app.post('/api/requests/addrow', function(req, res) {
     var approved = 0;
     var comments = 'request';
 	var tableName = 'Requests (iccid,dataPackageId,timestamp,approved,comments)';
-	var parameters = '(\'' + iccid + '\',\'' + datapackageid + '\',\'' + timestamp + '\',' + approved + ',\'' + comments + '\')';
+	var parameters = '(\'' + iccid + '\',\'' + datapackageid + '\',\'' + timestamp + '\',\'' + approved + '\',\'' + comments + '\')';
 	var queryText = 'INSERT INTO ' + tableName + ' VALUES ' + parameters;
     mydb.dBInsert(config, queryText, function (recordset) {
 		res.json({ status: recordset });
@@ -110,7 +110,7 @@ app.post('/api/usage/addrow', function(req, res) {
     var sent = req.body.sent;
     var received = req.body.received;
 	var tableName = 'Usage (simCardDataPackageId,timestamp,sent,received)';
-	var parameters = '(\'' + simcarddatapackageid + '\',\'' + timestamp + '\',\'' + sent + '\',' + received + '\')';
+	var parameters = '(\'' + simcarddatapackageid + '\',\'' + timestamp + '\',\'' + sent + '\',\'' + received + '\')';
 	var queryText = 'INSERT INTO ' + tableName + ' VALUES ' + parameters;
     mydb.dBInsert(config, queryText, function (recordset) {
 		res.json({ status: recordset });
