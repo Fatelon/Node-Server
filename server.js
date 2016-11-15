@@ -52,7 +52,6 @@ app.get('/', function (req, res) {
 app.get('/log', function (req, res) {
   console.log('Go to /log');
   res.status(200).send('');
-//  res.send('{"status": [{"st": "ok"]}}');
 });
 
 app.get('/getrequests', function (req, res) {
@@ -111,7 +110,7 @@ app.post('/setsimcarddatapackagesnotactive', function (req, res) {
 		param     = 'active=0',  
 		condition = 'simCardDataPackageId=' + req.body.simcarddatapackageid;
 	mydb.dbUpdate(config, dbName, param, condition, function (recordset) {
-		res.json({ status: recordset });
+		res.json({ condition });
 	});
 });
 
