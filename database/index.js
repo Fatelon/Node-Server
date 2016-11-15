@@ -79,3 +79,18 @@ module.exports.dBInsert = function(config, queryText, callback) {
 	});
   });
 }
+
+module.exports.dbUpdate = function(config, dbName, param,  condition, callback) {
+  var connection1 = new sql.Connection(config, function(err) {
+    if (err != null) {
+      console.log('DB UPADATE - ' + err);
+	  callback('0');
+    }
+    var request = new sql.Request(connection1);
+    request.query('UPDATE ' + dbName + ' SET ' + param + ' WHERE ' + condition, function(err, recordset) {
+        console.log('DB UPADATE recordset - %j', recordset);
+		callback('1');
+    });
+	
+  });
+}
