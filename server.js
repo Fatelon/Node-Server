@@ -37,13 +37,6 @@ var config = {
         encrypt: true // Use this if you're on Windows Azure 
     }
 }  
-
-//var dbName 	  = 'SimCardDataPackages',
-	//param     = 'active=0',  
-	//condition = 'simCardDataPackageId=4';
-//mydb.dbUpdate(config, dbName, param, condition, function (recordset) {
-	//console.log(recordset);
-  //});
   
 app.get('/', function (req, res) {
   res.render('index.html', { pageCountMessage : null});
@@ -111,6 +104,19 @@ app.post('/api/usage/addrow', function(req, res) {
     var received = req.body.received;
 	var tableName = 'Usage (simCardDataPackageId,timestamp,sent,received)';
 	var parameters = '(\'' + simcarddatapackageid + '\',\'' + timestamp + '\',\'' + sent + '\',\'' + received + '\')';
+	var queryText = 'INSERT INTO ' + tableName + ' VALUES ' + parameters;
+    mydb.dBInsert(config, queryText, function (recordset) {
+		res.json({ status: recordset });
+	});
+});
+
+app.post('/api/sms/addrow', function(req, res) {
+    var iccid = req.body.iccid;
+    var message = req.body.message;
+    var fromNumber = req.body.fromNumber;
+    var timestamp = req.body.timestamp;
+	var tableName = 'SMS (iccid,message,fromNumber,timestamp)';
+	var parameters = '(\'' + iccid + '\',\'' + message + '\',\'' + fromNumber + '\',\'' + timestamp + '\')';
 	var queryText = 'INSERT INTO ' + tableName + ' VALUES ' + parameters;
     mydb.dBInsert(config, queryText, function (recordset) {
 		res.json({ status: recordset });
