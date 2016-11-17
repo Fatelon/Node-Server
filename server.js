@@ -89,7 +89,7 @@ app.post('/addnewdevice', function (req, res) {
 		if (recordset == '1') {
 			mydb.dBInsert(config, queryText_2, function (recordset) {
 				if (recordset == '1') {
-					mydb.dBInsert(config, queryText_2, function (recordset) {
+					mydb.dBInsert(config, queryText_3, function (recordset) {
 						res.json({ status: recordset });
 					});	
 				} else {	
