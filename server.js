@@ -84,7 +84,7 @@ app.post('/addnewdevice', function (req, res) {
 	var dateadded = new Date().toISOString();
 	var queryText_1 = 'INSERT INTO Devices VALUES (\'' + deviceid + '\', \'' + appdeviceid + '\', \'' + description + '\')';
 	var queryText_2 = 'INSERT INTO SimCards VALUES (\''  + iccid + '\', \'' + msisdn + '\', \'' + imei + '\', \'' + network + '\', \'' + active + '\', \'' + dateadded + '\')';
-	var queryText_3 = 'INSERT INTO Devices VALUES (\'' + deviceid + '\', \'' + iccid + '\')';
+	var queryText_3 = 'INSERT INTO DeviceSimCards VALUES (\'' + deviceid + '\', \'' + iccid + '\')';
 	mydb.dBInsert(config, queryText_1, function (recordset) {
 		if (recordset == '1') {
 			mydb.dBInsert(config, queryText_2, function (recordset) {
