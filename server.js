@@ -21,22 +21,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.engine('html', eps.renderFile);
 app.use('', express.static(__dirname + '/public'));
 
-//var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
-    //ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
-var port = 8080,
-	ip   = '127.0.0.1';
+//var port = 8080,
+	//ip   = '127.0.0.1';
   
 var config = {
-    //user: 'DB_A1252A_fatelon_admin',
-    //password: 'adminpass!1',
-    //server: 'sql5027.smarterasp.net', 
-    //database: 'DB_A1252A_fatelon',
+    user: 'DB_A1252A_fatelon_admin',
+    password: 'adminpass!1',
+    server: 'sql5027.smarterasp.net', 
+    database: 'DB_A1252A_fatelon',
  
-	user: 'datacontrol',
-    password: 'd@t@c0ntr0l',
-    server: 'SWDEVSRV01.softwareworx.co.za', 
-    database: 'DataControl',
+	//user: 'datacontrol',
+    //password: 'd@t@c0ntr0l',
+    //server: 'SWDEVSRV01.softwareworx.co.za', 
+    //database: 'DataControl',
+	
     options: {
         encrypt: true // Use this if you're on Windows Azure 
     }
@@ -72,19 +73,38 @@ app.get('/simcarddatapackages', function (req, res) {
 });
 
 app.post('/addnewdevice', function (req, res) {
-  var deviceid = req.body.deviceid;
-  var appdeviceid = req.body.appdeviceid;
-  var description = req.body.description;
-  var iccid = req.body.iccid;
-  var msisdn = req.body.msisdn;
-  var imei = req.body.imei;
-  var network = req.body.network;
-  var active = 1;
-  var dateadded = new Date().toISOString();
-  mydb.addRowInTable(config, 'Devices', '(\'' + deviceid + '\', \'' + appdeviceid + '\', \'' + description + '\')');
-  mydb.addRowInTable(config, 'DeviceSimCards', '(\'' + deviceid + '\', \'' + iccid + '\')');
-  mydb.addRowInTable(config, 'SimCards', '(\'' + iccid + '\', \'' + msisdn + '\', \'' + imei + '\', \'' + network + '\', \'' + active + '\', \'' + dateadded + '\')');
-  res.json('[{"status":1}]');
+	var deviceid = req.body.deviceid;
+	var appdeviceid = req.body.appdeviceid;
+	var description = req.body.description;
+	var iccid = req.body.iccid;
+	var msisdn = req.body.msisdn;
+	var imei = req.body.imei;
+	var network = req.body.network;
+	var active = 1;
+	var dateadded = new Date().toISOString();
+	var queryText_1 = 'INSERT INTO Devices VALUES (\'' + deviceid + '\', \'' + appdeviceid + '\', \'' + description + '\')');
+	var queryText_2 = 'INSERT INTO SimCards VALUES (\''  + iccid + '\', \'' + msisdn + '\', \'' + imei + '\', \'' + network + '\', \'' + active + '\', \'' + dateadded + '\')');
+	var queryText_3 = 'INSERT INTO Devices VALUES (\'' + deviceid + '\', \'' + iccid + '\')');
+	mydb.dBInsert(config, queryText_1, function (recordset) {
+		if (recordset == '1') {
+			mydb.dBInsert(config, queryText_2, function (recordset) {
+				if (recordset == '1') {
+					mydb.dBInsert(config, queryText_2, function (recordset) {
+						res.json({ status: recordset });
+					});	
+				} else {	
+					res.json({ status: recordset });
+				}
+			});
+		} else {	
+			res.json({ status: recordset });
+		}
+	});
+	
+  //mydb.addRowInTable(config, 'Devices', '(\'' + deviceid + '\', \'' + appdeviceid + '\', \'' + description + '\')');
+  //mydb.addRowInTable(config, 'DeviceSimCards', '(\'' + deviceid + '\', \'' + iccid + '\')');
+  //mydb.addRowInTable(config, 'SimCards', '(\'' + iccid + '\', \'' + msisdn + '\', \'' + imei + '\', \'' + network + '\', \'' + active + '\', \'' + dateadded + '\')');
+  //res.json('[{"status":1}]');
 });
 
 app.post('/api/requests/addrow', function(req, res) {
