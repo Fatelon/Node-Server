@@ -21,18 +21,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.engine('html', eps.renderFile);
 app.use('', express.static(__dirname + '/public'));
 
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
-    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+//var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    //ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
-//var port = 8080,
-	//ip   = '127.0.0.1';
+var port = 8080,
+	ip   = '127.0.0.1';
   
 var config = {
-    user: 'DB_A1252A_fatelon_admin',
-    password: 'adminpass!1',
-    server: 'sql5027.smarterasp.net', 
-    database: 'DB_A1252A_fatelon',
+    //user: 'DB_A1252A_fatelon_admin',
+    //password: 'adminpass!1',
+    //server: 'sql5027.smarterasp.net', 
+    //database: 'DB_A1252A_fatelon',
  
+	user: 'datacontrol',
+    password: 'd@t@c0ntr0l',
+    server: 'SWDEVSRV01.softwareworx.co.za', 
+    database: 'DataControl',
     options: {
         encrypt: true // Use this if you're on Windows Azure 
     }
