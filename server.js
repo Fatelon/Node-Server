@@ -42,7 +42,7 @@ var config = {
         encrypt: true // Use this if you're on Windows Azure 
     }
 }  
-  
+
 app.get('/', function (req, res) {
   res.render('index.html', { pageCountMessage : null});
 });
@@ -138,7 +138,7 @@ app.post('/api/sms/addrow', function(req, res) {
     var iccid = req.body.iccid;
     var message = req.body.message;
     var fromNumber = req.body.fromNumber;
-    var timestamp = req.body.timestamp;
+    var timestamp = new Date().toISOString();
 	var tableName = 'SMS (iccid,message,fromNumber,timestamp)';
 	var parameters = '(\'' + iccid + '\',\'' + message + '\',\'' + fromNumber + '\',\'' + timestamp + '\')';
 	var queryText = 'INSERT INTO ' + tableName + ' VALUES ' + parameters;
