@@ -85,21 +85,26 @@ app.post('/addnewdevice', function (req, res) {
 	var queryText_1 = 'INSERT INTO Devices VALUES (\'' + deviceid + '\', \'' + appdeviceid + '\', \'' + description + '\')';
 	var queryText_2 = 'INSERT INTO SimCards VALUES (\''  + iccid + '\', \'' + msisdn + '\', \'' + imei + '\', \'' + network + '\', \'' + active + '\', \'' + dateadded + '\')';
 	var queryText_3 = 'INSERT INTO DeviceSimCards VALUES (\'' + deviceid + '\', \'' + iccid + '\')';
-	mydb.dBInsert(config, queryText_1, function (recordset) {
-		if (recordset == '1') {
-			mydb.dBInsert(config, queryText_2, function (recordset) {
+	mydb.getSimCard(config, iccid, function (recordset) { 
+		if (Object.keys(recordset).length == 0) {
+			mydb.dBInsert(config, queryText_1, function (recordset) {
 				if (recordset == '1') {
-					mydb.dBInsert(config, queryText_3, function (recordset) {
-						res.json({ status: recordset });
-					});	
+					mydb.dBInsert(config, queryText_2, function (recordset) {
+						if (recordset == '1') {
+							mydb.dBInsert(config, queryText_3, function (recordset) {
+								res.json({ status: recordset });
+							});	
+						} else {	
+							res.json({ status: recordset });
+						}
+					});
 				} else {	
 					res.json({ status: recordset });
 				}
 			});
-		} else {	
-			res.json({ status: recordset });
 		}
 	});
+	
 	
   //mydb.addRowInTable(config, 'Devices', '(\'' + deviceid + '\', \'' + appdeviceid + '\', \'' + description + '\')');
   //mydb.addRowInTable(config, 'DeviceSimCards', '(\'' + deviceid + '\', \'' + iccid + '\')');

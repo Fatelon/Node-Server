@@ -94,3 +94,17 @@ module.exports.dbUpdate = function(config, dbName, param,  condition, callback) 
 	
   });
 }
+
+module.exports.getSimCard = function(config, iccid, callback) {
+  var connection1 = new sql.Connection(config, function(err) {
+    if (err != null) {
+      console.log('DB SELECT - ' + err);
+    }
+    var request = new sql.Request(connection1);
+    request.query('SELECT * FROM SimCards WHERE iccid = \'' + iccid + '\'', function(err, recordset) {
+        console.log('DB SELECT recordset - %j', recordset);
+		callback(recordset);
+    });
+	
+  });
+}
